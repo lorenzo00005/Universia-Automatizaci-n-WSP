@@ -1,0 +1,49 @@
+{
+  "name": "Ejemplo: webhook genérico",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "universia/ejemplo",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "b1f0c7a2-0000-4000-8000-000000000001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "universia-ejemplo"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "recibido",
+              "value": "={{ $json.body }}",
+              "type": "object"
+            },
+            {
+              "id": "a2",
+              "name": "ok",
+              "value": true,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b1f0c7a2-0000-4000-8000-000000000002",
+      "name": "Responder",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [240, 0]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Responder", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
